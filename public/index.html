@@ -23,21 +23,56 @@
 </head>
 
 <body>
+
+    <!-- Header -->
     <header class="header-container">
         <div class="logo">
-            <img src="/Imgs/Logo-dark.png" alt="Company Logo">
+            <img src="/Imgs/Logo-light.png" alt="Company Logo">
         </div>
         <form action="/" method="get" class="search form">
-            <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" name="search" placeholder="Search" class="search-bar" autofocus />
+            <i class="fa-solid fa-magnifying-glass"></i>
         </form>
-    </header>
-    <section class="movie-category-container">
-        <div class="category-banner">
-            <h1 class="category-name">POPULAR</h1>
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
         </div>
+    </header>
 
-    </section>
+    <!-- Content Section -->
+
+    <main>
+
+        <!-- Category Buttons -->
+        <div class="category-container">
+            <h1 class="category-header-title">Category</h1>
+            <div class="btn-container">
+                <button class="btn" data-category="">Adventure</button>
+                <button class="btn" data-category="">Action</button>
+
+            </div>
+        </div>
+        <!-- Movie Section -->
+        <section class="movie-section-container">
+            <div class="category-banner">
+                <h1 class="category-name">POPULAR</h1>
+            </div>
+            <div class="movies-container">
+                <div class="movie-card-filter">
+                    <div class="movie-card">
+                        <span class="rating">7.5<i class="fa-solid fa-star"></i></span>
+                        <div class="poster-container">
+                            <img src="https://image.tmdb.org/t/p/w500/tVxDe01Zy3kZqaZRNiXFGDICdZk.jpg" class="poster"
+                                alt="movie-name-poster">
+                        </div>
+                        <h3 class="movie-name">Bullet Train</h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
 </body>
 
 </html>
