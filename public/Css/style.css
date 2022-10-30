@@ -11,6 +11,7 @@
     --btn-primary-dark: rgb(18, 18, 18);
     --lighter-gray: rgb(231, 231, 231);
     --dark: rgb(0, 0, 0);
+    --light-main: rgb(33, 33, 33);
 
 
 
@@ -149,7 +150,6 @@ header {
 .movie-section-container {
     margin-top: 105px;
     width: 82vw;
-    z-index: -3;
 }
 
 .category-banner {
@@ -209,8 +209,10 @@ h1 {
     background-color: var(--secondary-color-dark);
     width: 180px;
     box-shadow: 10px 0px 9px -5px rgb(127 127 127 / 78%);
-    z-index: -1;
+
 }
+
+/* List MOvie Section */
 
 .movies-container {
     display: flex;
@@ -315,6 +317,57 @@ h1 {
     border-bottom-right-radius: 5px;
     height: 30px;
 }
+
+
+
+/* Movie Details Overlay */
+
+.movie-overlay {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: var(--light-main);
+    margin-top: 105px;
+    width: 90vw;
+    transition: all .4s linear;
+    height: 1880px;
+}
+
+
+.movie-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid var(--btn-secondary-dark);
+    border-radius: 24px;
+    padding: 10px;
+    width: 900px;
+    background-color: var(--light-main);
+}
+
+.close-btn {
+    border: none;
+    background-color: var(--light-main);
+}
+
+.close-btn i {
+    border: none;
+    background-color: var(--light-main);
+    position: relative;
+    bottom: 880px;
+    left: 410px;
+
+}
+
+.official-page {
+    background-color: var(--light-main);
+    border: 1px solid var(--btn-secondary-dark);
+}
+
+
+
 
 
 /* Media Queries */
