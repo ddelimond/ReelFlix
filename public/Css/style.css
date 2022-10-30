@@ -25,6 +25,24 @@
     --dark: rgb(0, 0, 0);
 }
 
+
+html::-webkit-scrollbar {
+    height: 10px;
+    margin-top: 10px;
+    margin-bottom: 30p;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: var(--secondary-color-dark);
+    border-radius: 10px;
+}
+
+html::-webkit-scrollbar-track {
+    background: var(--primary-minor-dark);
+    border-radius: 10px;
+}
+
+
 /* Page Reset */
 * {
     margin: 0;
@@ -36,6 +54,7 @@
 
 body {
     background-color: var(--main-color-dark);
+
 }
 
 img {
@@ -48,7 +67,7 @@ img {
 main {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 /* Header */
@@ -130,6 +149,7 @@ header {
 .movie-section-container {
     margin-top: 105px;
     width: 82vw;
+    z-index: -3;
 }
 
 .category-banner {
@@ -182,11 +202,14 @@ h1 {
 }
 
 .category-container {
+    position: fixed;
     margin-top: 77px;
     left: 0;
-    height: 100vh;
+    height: 999vh;
     background-color: var(--secondary-color-dark);
     width: 180px;
+    box-shadow: 10px 0px 9px -5px rgb(127 127 127 / 78%);
+    z-index: -1;
 }
 
 .movies-container {
