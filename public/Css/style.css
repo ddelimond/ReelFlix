@@ -150,6 +150,7 @@ header {
 .movie-section-container {
     margin-top: 105px;
     width: 82vw;
+    display: none;
 }
 
 .category-banner {
@@ -215,7 +216,7 @@ h1 {
 /* List MOvie Section */
 
 .movies-container {
-    display: flex;
+    /* display: flex; */
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
@@ -223,6 +224,7 @@ h1 {
     justify-content: center;
     column-gap: 30px;
     row-gap: 130px;
+    display: none
 }
 
 .movie-card-filter {
@@ -328,8 +330,9 @@ h1 {
     justify-content: center;
     padding: 20px 0;
     background-color: var(--light-main);
-    margin-top: 105px;
-    width: 90vw;
+    margin-top: 75px;
+    margin-left: 180px;
+    width: 100vw;
     transition: all .4s linear;
     height: 1880px;
 }
@@ -343,27 +346,56 @@ h1 {
     border: 6px solid var(--btn-secondary-dark);
     border-radius: 24px;
     padding: 10px;
-    width: 900px;
+    width: 80vw;
+    max-width: 1000px;
     background-color: var(--light-main);
 }
 
 .close-btn {
     border: none;
     background-color: var(--light-main);
+    padding: 10px;
 }
 
 .close-btn i {
     border: none;
     background-color: var(--light-main);
+    color: var(--btn-secondary-dark);
     position: relative;
-    bottom: 880px;
+    bottom: 876px;
+    font-size: 1.5rem;
     left: 410px;
 
 }
 
 .official-page {
     background-color: var(--light-main);
-    border: 1px solid var(--btn-secondary-dark);
+    position: relative;
+    bottom: 912px;
+    padding: 2px;
+    left: 310px;
+    color: var(--btn-secondary-dark);
+    font-size: 13px;
+    text-decoration: none;
+    border: 3px solid var(--btn-secondary-dark);
+    border-radius: 20px;
+    width: 120px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recommeded {
+    background-color: blue;
+}
+
+.trailer {
+    background-color: red;
+}
+
+.movie-details {
+    background-color: green;
 }
 
 
@@ -395,12 +427,12 @@ h1 {
         width: 100vw;
     }
 
-
-
-    /* .fa-magnifying-glass{
-        right: 175px;
-    } */
+    .movie-overlay {
+        margin-left: initial;
+    }
 }
+
+@media (min-width: 901px) {}
 
 
 /* Search Placeholder color */
