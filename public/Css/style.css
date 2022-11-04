@@ -27,18 +27,21 @@
 }
 
 
-html::-webkit-scrollbar {
+html::-webkit-scrollbar,
+.recommended::-webkit-scrollbar {
     height: 10px;
     margin-top: 10px;
     margin-bottom: 30p;
 }
 
-html::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb,
+.recommended::-webkit-scrollbar-thumb {
     background: var(--secondary-color-dark);
     border-radius: 10px;
 }
 
-html::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track,
+.recommended::-webkit-scrollbar-track {
     background: var(--primary-minor-dark);
     border-radius: 10px;
 }
@@ -393,16 +396,15 @@ h1 {
 
 .recommended {
     width: 100%;
-    background-color: blue;
 }
 
-.trailer {
-    background-color: red;
-}
-
+.trailer,
+.recommended,
 .movie-details {
-    background-color: green;
+    background-color: var(--light-main);
 }
+
+
 
 .movie-details {
     display: flex;
@@ -420,6 +422,28 @@ h1 {
 
 .movie-info-name {
     font-size: 2.5rem;
+    color: var(--third-minor-light);
+}
+
+.movie-info-genre {
+    width: 60%;
+    height: 30px;
+    border-radius: 15px;
+    background-color: var(--btn-primary-light);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.movie-info-plot h4 {
+    color: rgba(246, 5, 47, 0.43);
+}
+
+.movie-info-votes,
+.movie-info-ratings {
+    color: var(--primary-minor-dark);
+    ;
 }
 
 .movie-poster img {
