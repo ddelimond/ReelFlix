@@ -548,7 +548,7 @@ h1 {
     }
 
     .movie-overlay {
-        height: 120vh;
+        height: initial;
     }
 
     .movie-poster {
