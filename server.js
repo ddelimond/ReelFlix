@@ -11,6 +11,9 @@ require('dotenv').config();
 const app = express();
 
 
+
+
+
 // middleware
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -23,6 +26,19 @@ mongoose.connect(
     { useNewUrlParser: true },
     console.log('Connected to your Db!')
 );
+
+app.get('/', async (req, res) => {
+    const mostPopularUrl = `https://imdb-api.com/en/API/MostPopularMovies/`
+    let popUrl = mostPopularUrl + process.env.apiKey;
+    let popRes = await fetch(popUrl);
+    let popData = await popRes.json();
+
+
+    res.render('index.ejs', { movieData: popData });
+})
+
+
+
 
 
 app.listen(port, () => {

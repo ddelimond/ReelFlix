@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/Imgs/REElFlix/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Imgs/REElFlix/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Imgs/REElFlix/favicon-16x16.png">
+    <link rel="manifest" href="/Imgs/REElFlix/site.webmanifest">
+    <link rel="mask-icon" href="/Imgs/REElFlix/safari-pinned-tab.svg" color="#000000">
+    <link rel="shortcut icon" href="/Imgs/REElFlix/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="/Imgs/REElFlix/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://kit.fontawesome.com/3d26510c42.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Css/style.css">
+    <title>ReelFlix</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header-container">
+        <div class="logo">
+            <img src="/Imgs/Logo-light.png" alt="Company Logo">
+        </div>
+        <form action="/" method="get" class="search form">
+            <input type="text" name="search" placeholder="Search" class="search-bar" autofocus />
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </form>
+        <div class="hamburger-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+
+    <main>
+        <!-- Category Buttons -->
+        <div class="category-container">
+            <h1 class="category-header-title">Category</h1>
+            <div class="btn-container">
+                <button class="btn" data-category="">Adventure</button>
+                <button class="btn" data-category="">Action</button>
+
+            </div>
+        </div>
+        <!-- Movie Section -->
+        <section class="movie-section-container">
+            <div class="category-banner">
+                <h1 class="category-name">POPULAR</h1>
+            </div>
+            <div class="movies-container">
+
+                <% movieData.items.forEach(movie=> {%>
+                    <div class="movie-card-filter">
+                        <div class="movie-card">
+                            <span class="rating">
+                                <%=movie.imDbRating%><i class="fa-solid fa-star"></i>
+                            </span>
+                            <div class="poster-container">
+                                <img src=<%=movie.image%> alt=<%=movie.fullTitle%>>
+                            </div>
+                            <div class="movie-info">
+                                <h5 class="movie-name">
+                                    <%=movie.title%>
+                                </h5>
+                                <div class="details">
+                                    <div class="year-date">
+                                        <span><span class="year">
+                                                <%=movie.year%>
+                                            </span>.<span class="runtime">127 min</span></span>
+                                    </div>
+                                    <div class="platform">
+                                        <span>Movie</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <%})%>
+
+
+
+
+                        <!-- Movie Info Overlay -->
+
+                        <section class="movie-overlay">
+                            <div class="movie-details-container">
+                                <div class="details-btns">
+                                    <a href="#" class="official-page">OFFICIAL PAGE</a>
+                                    <button class="close-btn">
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </button>
+                                </div>
+                                <div class="movie-details">
+                                    <div class="movie-poster">
+                                        <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                            alt="movie-poster">
+                                    </div>
+                                    <div class="info">
+                                        <h2 class="movie-info-name">Fullmetal Alchemist: The Final Alchemy</h2>
+                                        <h4 class="movie-info-release-date">Release date: 2022-06-24</h4>
+                                        <div class="movie-info-ratings">
+                                            <span>rating: 6.3 <i class="fa-solid fa-star"></i></span>
+                                            <span class="movie-info-votes">all votes: 109</span>
+                                        </div>
+                                        <div class="movie-info-genre">Action</div>
+                                        <div class="movie-info-plot">
+                                            <h4>Plot: The Elric brothers' long and winding journey comes to a close in
+                                                this epic finale,
+                                                where they must face off against an unworldly, nationwide threat.</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="trailer">
+                                    <div class="line"></div>
+                                    <h3 class="trailer-title">Trailer:</h3>
+                                    <iframe src="https://www.youtube.com/embed/cqj4u6eyDq8" title="YouTube video player"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+
+                                </div>
+                                <div class="recommended">
+                                    <div class="line"></div>
+                                    <h3 class="rec-title">People who watched "Fullmetal Alchemist: The Final Alchemy"
+                                        also watch:</h3>
+                                    <div class="rec-posters">
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+
+                                        <div class="movie-rec-poster">
+                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
+                                                alt="movie-poster">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+    </main>
+    <script type="module" src="/Js/app.js"></script>
+</body>
+
+</html>
