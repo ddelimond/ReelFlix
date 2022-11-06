@@ -247,7 +247,7 @@ h1 {
     border-radius: 5px;
     color: var(--third-minor-dark);
     width: 177px;
-    height: 220px;
+    /* height: 220px; */
     box-shadow: 01px -10px 9px -5px rgba(127, 127, 127, 0.78);
 }
 
@@ -256,6 +256,8 @@ h1 {
     flex-direction: column;
     cursor: pointer;
     background-color: var(--main-color-dark);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .movie-card-filter:hover {
