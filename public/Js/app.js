@@ -34,7 +34,7 @@ function closeMovieInfo() {
     movieList.style.opacity = '1';
 };
 
-function openMovieInfo(e) {
+async function openMovieInfo(e) {
 
     const movieName = e.currentTarget.querySelector('.movie-card').querySelector('.movie-info').querySelector('.movie-name').textContent;
     movieList.style.display = 'none';
@@ -44,4 +44,6 @@ function openMovieInfo(e) {
     window.scrollTo(0, 0);
     console.log(movieName);
 }
+
+
 

@@ -56,7 +56,6 @@
                 <h1 class="category-name">POPULAR</h1>
             </div>
             <div class="movies-container">
-
                 <% movieData.items.forEach(movie=> {%>
                     <div class="movie-card-filter">
                         <div class="movie-card">
@@ -84,130 +83,12 @@
 
                         </div>
                     </div>
-
                     <%})%>
+            </div>
+        </section>
 
+        <%- include("partials/movieoverlay") %>
 
-
-
-                        <!-- Movie Info Overlay -->
-
-                        <section class="movie-overlay">
-                            <div class="movie-details-container">
-                                <div class="details-btns">
-                                    <a href="#" class="official-page">OFFICIAL PAGE</a>
-                                    <button class="close-btn">
-                                        <i class="fa-solid fa-circle-xmark"></i>
-                                    </button>
-                                </div>
-                                <div class="movie-details">
-                                    <div class="movie-poster">
-                                        <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                            alt="movie-poster">
-                                    </div>
-                                    <div class="info">
-                                        <h2 class="movie-info-name">Fullmetal Alchemist: The Final Alchemy</h2>
-                                        <h4 class="movie-info-release-date">Release date: 2022-06-24</h4>
-                                        <div class="movie-info-ratings">
-                                            <span>rating: 6.3 <i class="fa-solid fa-star"></i></span>
-                                            <span class="movie-info-votes">all votes: 109</span>
-                                        </div>
-                                        <div class="movie-info-genre">Action</div>
-                                        <div class="movie-info-plot">
-                                            <h4>Plot: The Elric brothers' long and winding journey comes to a close in
-                                                this epic finale,
-                                                where they must face off against an unworldly, nationwide threat.</h4>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="trailer">
-                                    <div class="line"></div>
-                                    <h3 class="trailer-title">Trailer:</h3>
-                                    <iframe src="https://www.youtube.com/embed/cqj4u6eyDq8" title="YouTube video player"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-
-                                </div>
-                                <div class="recommended">
-                                    <div class="line"></div>
-                                    <h3 class="rec-title">People who watched "Fullmetal Alchemist: The Final Alchemy"
-                                        also watch:</h3>
-                                    <div class="rec-posters">
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-
-                                        <div class="movie-rec-poster">
-                                            <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg"
-                                                alt="movie-poster">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </section>
     </main>
     <script type="module" src="/Js/app.js"></script>
 </body>
