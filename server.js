@@ -28,18 +28,14 @@ mongoose.connect(
 );
 
 app.get('/', async (req, res) => {
-    const mostPopularUrl = `https://imdb-api.com/en/API/MostPopularMovies/`
-    let popUrl = mostPopularUrl + process.env.apiKey;
+    const popUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDBKey}`
     let popRes = await fetch(popUrl);
     let popData = await popRes.json();
+    let date = new Date().getFullYear()
+    res.render('index.ejs', { movieData: popData, date: date });
 
-
-    res.render('index.ejs', { movieData: popData });
+    console.log(popData.results);
 })
-
-
-
-
 
 app.listen(port, () => {
     console.log('Server is running go catch it ...')

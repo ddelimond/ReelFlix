@@ -555,6 +555,18 @@ h1 {
     padding: 15px;
 }
 
+/* Footer */
+footer {
+    height: 70px;
+    color: var(--primary-minor-dark);
+    background-color: var(--secondary-color-dark);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 177px;
+}
 
 
 
@@ -570,6 +582,10 @@ h1 {
 @media (max-width: 900px) {
     .hamburger-menu {
         display: block;
+    }
+
+    footer {
+        margin-left: initial;
     }
 
     .category-container {
