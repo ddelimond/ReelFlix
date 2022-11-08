@@ -35,6 +35,7 @@ function closeMovieInfo() {
     movieList.style.opacity = '1';
 };
 
+
 async function openMovieInfo(e) {
 
 
@@ -44,6 +45,8 @@ async function openMovieInfo(e) {
     const movieData = await movieRes.json();
     movieList.style.display = 'none';
     movieList.style.opacity = '0'
+    const movieTrailRes = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/k_cmwzlhxy/${id}`);
+    const movieTrail = await movieTrailRes.json();
     movieOverlay.innerHTML = `<div class="movie-details-container">
 <div class="details-btns">
     <a href="#" class="official-page">OFFICIAL PAGE</a>
@@ -72,7 +75,7 @@ async function openMovieInfo(e) {
 <div class="trailer">
     <div class="line"></div>
     <h3 class="trailer-title">Trailer:</h3>
-    <iframe src="${movieData.trailer.linkEmbed}"</iframe>
+    <iframe src="https://www.youtube.com/embed/${movieTrail.videoId}"</iframe>
 
 </div>
 <div class="recommended">
