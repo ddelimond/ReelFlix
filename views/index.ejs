@@ -58,7 +58,7 @@
             <div class="movies-container">
                 <% movieData.items.forEach(movie=> {%>
                     <div class="movie-card-filter">
-                        <div class="movie-card">
+                        <div class="movie-card" data-id="<%=movie.id%>">
                             <span class="rating">
                                 <%=movie.imDbRating%><i class="fa-solid fa-star"></i>
                             </span>
