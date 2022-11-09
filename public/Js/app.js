@@ -14,7 +14,7 @@ const movieList = document.querySelector('.movie-section-container');
 
 // Event-Listener
 hamburgerMenu.addEventListener('click', openMenu);
-clsBtn.addEventListener('click', closeMovieInfo);
+// clsBtn.addEventListener('click', closeMovieInfo);
 
 movies.forEach(movie => {
     movie.addEventListener('click', openMovieInfo)
@@ -45,12 +45,12 @@ async function openMovieInfo(e) {
     const movieData = await movieRes.json();
     movieList.style.display = 'none';
     movieList.style.opacity = '0'
-    const movieTrailRes = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/k_cmwzlhxy/${id}`);
+    const movieTrailRes = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/${apiKey}/${id}`);
     const movieTrail = await movieTrailRes.json();
     movieOverlay.innerHTML = `<div class="movie-details-container">
 <div class="details-btns">
     <a href="#" class="official-page">OFFICIAL PAGE</a>
-    <button class="close-btn">
+    <button onclick="closeMovieInfo()" class="close-btn">
         <i class="fa-solid fa-circle-xmark"></i>
     </button>
 </div>
