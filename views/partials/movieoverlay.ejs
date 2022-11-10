@@ -46,7 +46,8 @@
         <div class="trailer">
             <div class="line"></div>
             <h3 class="trailer-title">Trailer:</h3>
-            <iframe src="https://www.youtube.com/embed/cqj4u6eyDq8" title="YouTube video player" frameborder="0"
+            <iframe id="video" src="https://www.youtube.com/embed/cqj4u6eyDq8" title="YouTube video player"
+                frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
 
@@ -71,7 +72,6 @@
     const TMDBKey = '0f33b6ea8c8d4e4629dab26d5b2c6c6f';
     const apiKey = 'k_cmwzlhxy';
     let rMovies = document.querySelectorAll('.movie-rec-poster');
-    const video = document.querySelector('iframe');
 
     // Eventlister
     rMovies.forEach(movie => {
@@ -80,10 +80,10 @@
 
     // Functions
     function closeMovieInfo() {
-        video.setAttribute('controls', 'pause');
+        let video = movieOverlay.querySelector('#video');
+        video.src = " ";
         movieOverlay.classList.add('close');
         movieOverlay.classList.remove('open');
-
         movieOverlay.style.display = 'none';
         movieOverlay.classList.remove('close');
         movieList.style.display = 'block';
@@ -130,7 +130,7 @@
     <div class="trailer">
         <div class="line"></div>
         <h3 class="trailer-title">Trailer:</h3>
-        <iframe src="${trailer.linkEmbed}"</iframe>
+        <iframe id="video" src="${trailer.linkEmbed}"</iframe>
     
     </div>
     
@@ -139,35 +139,40 @@
 
 
 
-    async function openMovieInfo(e) {
+    // async function openMovieInfo(e) {
 
-        const id = e.currentTarget.querySelector('.movie-card').attributes[1].nodeValue;
-        const movieName = e.currentTarget.querySelector('.movie-card').querySelector('.movie-info').querySelector('.movie-name').textContent;
-        const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMDBKey}`);
-        const movieData = await movieRes.json();
-        const imdbRes = await fetch(`https://imdb-api.com/en/API/SearchMovie/${apiKey}/${movieName}`);
-        const imdbData = await imdbRes.json();
-        const imdbId = imdbData.results[0].id;
-        const movieTrailRes = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/${apiKey}/${imdbId}`);
-        const movieTrail = await movieTrailRes.json();
-        const simMovieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${TMDBKey}`);
-        const simMovieData = await simMovieRes.json();
-
-
-        await gatherInfo(movieData, simMovieData, movieTrail);
+    //     const id = e.currentTarget.querySelector('.movie-card').attributes[1].nodeValue;
+    //     const movieName = e.currentTarget.querySelector('.movie-card').querySelector('.movie-info').querySelector('.movie-name').textContent;
+    //     const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMDBKey}`);
+    //     const movieData = await movieRes.json();
+    //     const imdbRes = await fetch(`https://imdb-api.com/en/API/SearchMovie/${apiKey}/${movieName}`);
+    //     const imdbData = await imdbRes.json();
+    //     const imdbId = imdbData.results[0].id;
+    //     // Youtube, property is videoUrl 
+    //     // const movieTrailRes = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/${apiKey}/${imdbId}`);
+    //     // const movieTrail = await movieTrailRes.json();
 
 
-        movieList.style.display = 'none';
-        movieList.style.opacity = '0';
-        movieOverlay.style.display = 'flex';
-        movieOverlay.classList.add('open');
-        window.scrollTo(0, 0);
+    //     // IMBD Trailer property is linkEmbed 
+    //     const movieTrailRes = await fetch(`https://imdb-api.com/en/API/Trailer/${apiKey}/${imdbId}`);
+    //     const movieTrail = await movieTrailRes.json();
 
-        // simMovies.forEach(movie => {
-        //     movie.addEventListener('click', openSimMovieInfo)
-        // });
+    //     const simMovieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${TMDBKey}`);
+    //     const simMovieData = await simMovieRes.json();
 
-    }
+    //     console.log(video);
+
+
+    //     await gatherInfo(movieData, simMovieData, movieTrail);
+
+
+    //     movieList.style.display = 'none';
+    //     movieList.style.opacity = '0';
+    //     movieOverlay.style.display = 'flex';
+    //     movieOverlay.classList.add('open');
+    //     window.scrollTo(0, 0);
+
+    // }
 
 
     async function openSimMovieInfo(e) {

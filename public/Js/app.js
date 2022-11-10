@@ -71,7 +71,7 @@ async function gatherInfo(data, rec, trailer) {
 <div class="trailer">
     <div class="line"></div>
     <h3 class="trailer-title">Trailer:</h3>
-    <iframe src="${trailer.linkEmbed}"</iframe>
+    <iframe  id="video" src="${trailer.linkEmbed}"</iframe>
 
 </div>
 
@@ -89,23 +89,25 @@ async function openMovieInfo(e) {
     const imdbRes = await fetch(`https://imdb-api.com/en/API/SearchMovie/${apiKey}/${movieName}`);
     const imdbData = await imdbRes.json();
     const imdbId = imdbData.results[0].id;
+
+    // IMDB Embedded property is linkEmbed 
     const imdbTrailRes = await fetch(`https://imdb-api.com/en/API/Trailer/${apiKey}/${imdbId}`);
     const imdbTrail = await imdbTrailRes.json();
-    // Youtube Trailer
+    // Youtube Trailer property is videoId
     // const movieTrailRes = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/${apiKey}/${imdbId}`);
     // const movieTrail = await movieTrailRes.json();
     const simMovieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${TMDBKey}`);
     const simMovieData = await simMovieRes.json();
 
-    await gatherInfo(movieData, simMovieData, imdbTrail);
 
+
+    await gatherInfo(movieData, simMovieData, imdbTrail);
 
     movieList.style.display = 'none';
     movieList.style.opacity = '0';
     movieOverlay.style.display = 'flex';
     movieOverlay.classList.add('open');
     window.scrollTo(0, 0);
-
 
 }
 
