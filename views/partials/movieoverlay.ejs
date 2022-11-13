@@ -4,7 +4,7 @@
     <div class="movie-details-container">
         <div class="details-btns">
             <a href="#" class="official-page">OFFICIAL PAGE</a>
-            <button onclick="closeMovieInfo()" class="close-btn">
+            <button class="close-btn">
                 <i class="fa-solid fa-circle-xmark"></i>
             </button>
         </div>
@@ -33,10 +33,6 @@
             <h3 class="rec-title">People who watched "Fullmetal Alchemist: The Final Alchemy"
                 also watch:</h3>
             <div class="rec-posters">
-                <div class="movie-rec-poster" onclick="openSimMovieInfo(this)" data-id="" data-name="">
-                    <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg" alt="movie-poster">
-                </div>
-
                 <div class="movie-rec-poster" onclick="openSimMovieInfo(this)" data-id="" data-name="">
                     <img src="https://image.tmdb.org/t/p/w500/AeyiuQUUs78bPkz18FY3AzNFF8b.jpg" alt="movie-poster">
                 </div>
@@ -74,14 +70,13 @@
     let rMovies = document.querySelectorAll('.movie-rec-poster');
 
     // Eventlister
-    rMovies.forEach(movie => {
-        movie.addEventListener('click', openSimMovieInfo)
-    });
+    // rMovies.forEach(movie => {
+    //     movie.addEventListener('click', openSimMovieInfo)
+    // });
 
     // Functions
+
     function closeMovieInfo() {
-        let video = movieOverlay.querySelector('#video');
-        video.src = " ";
         movieOverlay.classList.add('close');
         movieOverlay.classList.remove('open');
         movieOverlay.style.display = 'none';
@@ -90,11 +85,12 @@
         movieList.style.opacity = '1';
     };
 
+
     function gatherInfo(data, rec, site, trailer) {
         return movieOverlay.innerHTML = `<div class="movie-details-container">
     <div class="details-btns">
         <a href="${site}" target="_blank" class="official-page">OFFICIAL PAGE</a>
-        <button onclick="closeMovieInfo()" class="close-btn">
+        <button class="close-btn">
             <i class="fa-solid fa-circle-xmark"></i>
         </button>
     </div>
@@ -198,6 +194,10 @@
 
         await gatherInfo(movieData, simMovieData, movieOfficialSite, imdbTrail);
 
+        let clsBtn = document.querySelector('.close-btn');
+
+        clsBtn.addEventListener('click', closeMovieInfo);
+
 
         movieList.style.display = 'none';
         movieList.style.opacity = '0';
@@ -205,6 +205,5 @@
         movieOverlay.classList.add('open');
         window.scrollTo(0, 0);
     }
-
 
 </script>

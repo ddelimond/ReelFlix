@@ -7,14 +7,16 @@ const hamburgerMenu = document.querySelector('.hamburger-menu');
 const categoryBtnsContainer = document.querySelector('.category-container');
 const movies = document.querySelectorAll('.movie-card-filter');
 const movieOverlay = document.querySelector('.movie-overlay');
-const clsBtn = document.querySelector('.close-btn');
+
 const movieList = document.querySelector('.movie-section-container');
 const genreBtnsContainer = document.querySelector('.btn-container')
 const genreBtns = document.querySelectorAll('.btn');
 
-// function getGenreMovies(e) {
-//     console.log('hello')
-// }
+
+genreBtns.forEach(btn => {
+    btn.addEventListener('click', getGenreMovies)
+})
+
 
 
 
@@ -28,21 +30,28 @@ const genreBtns = document.querySelectorAll('.btn');
 window.addEventListener('DOMContentLoaded', getGenres);
 
 hamburgerMenu.addEventListener('click', openMenu);
-// clsBtn.addEventListener('click', closeMovieInfo);
+
 
 movies.forEach(movie => {
     movie.addEventListener('click', openMovieInfo)
 });
 
-genreBtns.forEach(btn => {
-    btn.addEventListener('click', function getGenreMovies(e) {
-        console.log('hello')
-        console.log(e)
-    })
-});
-
-
 // Functions
+
+function getGenreMovies(e) {
+    console.log('hello')
+}
+
+
+function closeMovieInfo() {
+    movieOverlay.classList.add('close');
+    movieOverlay.classList.remove('open');
+    movieOverlay.style.display = 'none';
+    movieOverlay.classList.remove('close');
+    movieList.style.display = 'block';
+    movieList.style.opacity = '1';
+};
+
 
 function openMenu() {
     categoryBtnsContainer.classList.toggle('open')
@@ -58,6 +67,11 @@ async function getGenres() {
     }).join('');
 
     genreBtnsContainer.innerHTML = genreBtns;
+    const genreBtn = document.querySelectorAll('.btn');
+
+    genreBtn.forEach(btn => {
+        btn.addEventListener('click', getGenreMovies)
+    })
 }
 
 
@@ -65,7 +79,7 @@ async function gatherInfo(data, rec, site, trailer) {
     return movieOverlay.innerHTML = `<div class="movie-details-container">
 <div class="details-btns">
     <a href="${site}" target="_blank" class="official-page">OFFICIAL PAGE</a>
-    <button onclick="closeMovieInfo()" class="close-btn">
+    <button class="close-btn">
         <i class="fa-solid fa-circle-xmark"></i>
     </button>
 </div>
@@ -133,6 +147,10 @@ async function openMovieInfo(e) {
 
 
     await gatherInfo(movieData, simMovieData, movieOfficialSite, imdbTrail);
+
+    let clsBtn = document.querySelector('.close-btn');
+
+    clsBtn.addEventListener('click', closeMovieInfo);
 
     movieList.style.display = 'none';
     movieList.style.opacity = '0';
