@@ -9,6 +9,15 @@ const movies = document.querySelectorAll('.movie-card-filter');
 const movieOverlay = document.querySelector('.movie-overlay');
 const clsBtn = document.querySelector('.close-btn');
 const movieList = document.querySelector('.movie-section-container');
+const genreBtnsContainer = document.querySelector('.btn-container')
+const genreBtns = document.querySelectorAll('.btn');
+
+// function getGenreMovies(e) {
+//     console.log('hello')
+// }
+
+
+
 
 
 
@@ -16,11 +25,20 @@ const movieList = document.querySelector('.movie-section-container');
 
 
 // Event-Listener
+window.addEventListener('DOMContentLoaded', getGenres);
+
 hamburgerMenu.addEventListener('click', openMenu);
 // clsBtn.addEventListener('click', closeMovieInfo);
 
 movies.forEach(movie => {
     movie.addEventListener('click', openMovieInfo)
+});
+
+genreBtns.forEach(btn => {
+    btn.addEventListener('click', function getGenreMovies(e) {
+        console.log('hello')
+        console.log(e)
+    })
 });
 
 
@@ -30,11 +48,23 @@ function openMenu() {
     categoryBtnsContainer.classList.toggle('open')
 };
 
+async function getGenres() {
 
-async function gatherInfo(data, rec, trailer) {
+    const genresRes = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${TMDBKey}`);
+    const genreData = await genresRes.json();
+    const fetchedGenres = genreData.genres;
+    const genreBtns = fetchedGenres.map(genre => {
+        return `<button class="btn"  data-category="${genre.name}">${genre.name}</button>`
+    }).join('');
+
+    genreBtnsContainer.innerHTML = genreBtns;
+}
+
+
+async function gatherInfo(data, rec, site, trailer) {
     return movieOverlay.innerHTML = `<div class="movie-details-container">
 <div class="details-btns">
-    <a href="#" class="official-page">OFFICIAL PAGE</a>
+    <a href="${site}" target="_blank" class="official-page">OFFICIAL PAGE</a>
     <button onclick="closeMovieInfo()" class="close-btn">
         <i class="fa-solid fa-circle-xmark"></i>
     </button>
@@ -79,7 +109,6 @@ async function gatherInfo(data, rec, trailer) {
 }
 
 
-
 async function openMovieInfo(e) {
 
     const id = e.currentTarget.querySelector('.movie-card').attributes[1].nodeValue;
@@ -89,7 +118,9 @@ async function openMovieInfo(e) {
     const imdbRes = await fetch(`https://imdb-api.com/en/API/SearchMovie/${apiKey}/${movieName}`);
     const imdbData = await imdbRes.json();
     const imdbId = imdbData.results[0].id;
-
+    const movieOSRes = await fetch(`https://imdb-api.com/en/API/ExternalSites/${apiKey}/${imdbId}`);
+    const movieOSData = await movieOSRes.json()
+    const movieOfficialSite = movieOSData.officialWebsite;
     // IMDB Embedded property is linkEmbed 
     const imdbTrailRes = await fetch(`https://imdb-api.com/en/API/Trailer/${apiKey}/${imdbId}`);
     const imdbTrail = await imdbTrailRes.json();
@@ -101,7 +132,7 @@ async function openMovieInfo(e) {
 
 
 
-    await gatherInfo(movieData, simMovieData, imdbTrail);
+    await gatherInfo(movieData, simMovieData, movieOfficialSite, imdbTrail);
 
     movieList.style.display = 'none';
     movieList.style.opacity = '0';

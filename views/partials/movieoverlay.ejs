@@ -90,10 +90,10 @@
         movieList.style.opacity = '1';
     };
 
-    function gatherInfo(data, rec, trailer) {
+    function gatherInfo(data, rec, site, trailer) {
         return movieOverlay.innerHTML = `<div class="movie-details-container">
     <div class="details-btns">
-        <a href="#" class="official-page">OFFICIAL PAGE</a>
+        <a href="${site}" target="_blank" class="official-page">OFFICIAL PAGE</a>
         <button onclick="closeMovieInfo()" class="close-btn">
             <i class="fa-solid fa-circle-xmark"></i>
         </button>
@@ -136,8 +136,6 @@
     
 </div>`
     }
-
-
 
     // async function openMovieInfo(e) {
 
@@ -187,13 +185,18 @@
         const imdbId = imdbData.results[0].id;
         const imdbTrailRes = await fetch(`https://imdb-api.com/en/API/Trailer/${apiKey}/${imdbId}`);
         const imdbTrail = await imdbTrailRes.json();
+        const movieOfficialSiteRes = await fetch(`https://imdb-api.com/en/API/ExternalSites/${apiKey}/${imdbId}`);
+        const movieOfficialSiteData = await movieOfficialSiteRes.json();
+        const movieOfficialSite = movieOfficialSiteData.officialWebsite;
+
+
         // Youtube Trailer
         // const movieTrailRes = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/${apiKey}/${imdbId}`);
         // const movieTrail = await movieTrailRes.json();
         const simMovieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${TMDBKey}`);
         const simMovieData = await simMovieRes.json();
 
-        await gatherInfo(movieData, simMovieData, imdbTrail);
+        await gatherInfo(movieData, simMovieData, movieOfficialSite, imdbTrail);
 
 
         movieList.style.display = 'none';
