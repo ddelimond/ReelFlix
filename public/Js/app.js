@@ -38,8 +38,44 @@ movies.forEach(movie => {
 
 // Functions
 
-function getGenreMovies(e) {
-    console.log('hello')
+async function getGenreMovies(e) {
+    let genre = e.currentTarget.innerHTML;
+    let genreID = e.currentTarget.attributes[2].nodeValue;
+    let genreMoviesRes = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDBKey}&language=en-US&sort_by=popularity.desc&with_genres=${genreID}`)
+    let genreMoviesData = await genreMoviesRes.json();
+    let genreMovies = await genreMoviesData.results;
+    let genreNameDom = document.querySelector('.category-name');
+    genreNameDom.innerHTML = await genre.toUpperCase();
+    document.querySelector('.movies-container').innerHTML = genreMovies.map(movie => {
+        return `<div class="movie-card-filter">
+    <div class="movie-card" data-id="${movie.id}">
+        <span class="rating">
+            ${movie.vote_average}<i class="fa-solid fa-star"></i>
+        </span>
+        <div class="poster-container">
+            <img src='https://image.tmdb.org/t/p/w500/${movie.poster_path}' alt=${movie.title}>
+        </div>
+        <div class="movie-info">
+            <h5 class="movie-name">
+                ${movie.title}
+            </h5>
+            <div class="details">
+                <div class="year-date">
+                    <span><span class="year">
+                            ${movie.release_date.split('-')[0]}
+                        </span>.<span class="runtime">60mins +</span></span>
+                </div>
+                <div class="platform">
+                    <span>Movie</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>`
+    }).join('')
+
+    console.log(genreID)
 }
 
 
@@ -63,7 +99,7 @@ async function getGenres() {
     const genreData = await genresRes.json();
     const fetchedGenres = genreData.genres;
     const genreBtns = fetchedGenres.map(genre => {
-        return `<button class="btn"  data-category="${genre.name}">${genre.name}</button>`
+        return `<button class="btn"  data-category="${genre.name}" data-genreID="${genre.id}">${genre.name}</button>`
     }).join('');
 
     genreBtnsContainer.innerHTML = genreBtns;
