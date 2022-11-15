@@ -194,9 +194,14 @@
 
         await gatherInfo(movieData, simMovieData, movieOfficialSite, imdbTrail);
 
+        let movieDetails = document.querySelector('.movie-details');
         let clsBtn = document.querySelector('.close-btn');
 
         clsBtn.addEventListener('click', closeMovieInfo);
+
+        movieDetails.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${movieData.backdrop_path})`;
+        movieDetails.style.backgroundRepeat = 'no-repeat';
+        movieDetails.style.backgroundSize = 'cover';
 
 
         movieList.style.display = 'none';

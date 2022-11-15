@@ -45,6 +45,8 @@ async function getGenreMovies(e) {
     let genreMoviesData = await genreMoviesRes.json();
     let genreMovies = await genreMoviesData.results;
     let genreNameDom = document.querySelector('.category-name');
+
+
     genreNameDom.innerHTML = await genre.toUpperCase();
     document.querySelector('.movies-container').innerHTML = genreMovies.map(movie => {
         return `<div class="movie-card-filter">
@@ -75,7 +77,20 @@ async function getGenreMovies(e) {
     </div>`
     }).join('')
 
-    console.log(genreID)
+    if (movieOverlay.classList.contains('open')) {
+        closeMovieInfo();
+    } else if (categoryBtnsContainer.classList.contains('open')) {
+        categoryBtnsContainer.classList.remove('open')
+    }
+
+    const movies = document.querySelectorAll('.movie-card-filter');
+    await movies.forEach(movie => {
+        movie.addEventListener('click', openMovieInfo)
+    });
+
+
+
+
 }
 
 
@@ -182,11 +197,18 @@ async function openMovieInfo(e) {
 
 
 
-    await gatherInfo(movieData, simMovieData, movieOfficialSite, imdbTrail);
 
+    await gatherInfo(movieData, simMovieData, movieOfficialSite, imdbTrail);
+    let movieDetails = document.querySelector('.movie-details');
     let clsBtn = document.querySelector('.close-btn');
 
     clsBtn.addEventListener('click', closeMovieInfo);
+
+    movieDetails.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${movieData.backdrop_path})`;
+    movieDetails.style.backgroundRepeat = 'no-repeat';
+    movieDetails.style.backgroundSize = 'cover';
+
+
 
     movieList.style.display = 'none';
     movieList.style.opacity = '0';
