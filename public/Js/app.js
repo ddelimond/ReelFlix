@@ -11,6 +11,9 @@ const movieOverlay = document.querySelector('.movie-overlay');
 const movieList = document.querySelector('.movie-section-container');
 const genreBtnsContainer = document.querySelector('.btn-container')
 const genreBtns = document.querySelectorAll('.btn');
+const searchBar = document.querySelector('input');
+const searchResults = document.querySelector('.search-results');
+
 
 
 genreBtns.forEach(btn => {
@@ -31,12 +34,53 @@ window.addEventListener('DOMContentLoaded', getGenres);
 
 hamburgerMenu.addEventListener('click', openMenu);
 
-
 movies.forEach(movie => {
     movie.addEventListener('click', openMovieInfo)
 });
 
+searchBar.addEventListener('keyup', fetchSearchedMovies)
+
+
 // Functions
+
+
+
+async function fetchSearchedMovies() {
+    console.log(searchBar.value.length)
+
+    if (searchBar.value.length >= 3) { searchResults.classList.add('show') } else {
+        searchResults.classList.remove('show')
+    }
+
+    const req = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDBKey}&query=${searchBar.value}`);
+    const res = await req.json();
+    const arr = res.results;
+
+    if (arr.length !== 0) {
+        searchResults.innerHTML = arr.map(result => {
+
+            return ` <div class="search-card">
+<div class="search-item-img-container" data-id="${result.id}">
+    <img src="https://image.tmdb.org/t/p/w500${result.poster_path}" class="search-item-img" alt="No Image">
+</div>
+<h4 class="search-item-name">${result.title}</h4>
+<h4 class="search-realease-year">(${result.release_date.slice(0, 4) || 'N/A'})</h4>
+</div>`
+        }).join('')
+
+        let searchCards = document.querySelectorAll('.search-card');
+
+        searchCards.forEach(card => {
+            card.addEventListener('click', openSearch)
+        });
+
+
+    } else {
+        searchResults.innerHTML = 'Sorry nothing matches your serach...'
+    }
+}
+
+
 
 async function getGenreMovies(e) {
     let genre = e.currentTarget.innerHTML;
@@ -171,6 +215,57 @@ async function gatherInfo(data, rec, site, trailer) {
 </div>
 
 </div>`
+}
+
+async function openSearch(e) {
+    console.log(e.currentTarget)
+
+    const id = e.currentTarget.firstElementChild.attributes[1].nodeValue;
+    const movieName = e.currentTarget.querySelector('.search-item-name').textContent;
+    const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMDBKey}`);
+    const movieData = await movieRes.json();
+    const imdbRes = await fetch(`https://imdb-api.com/en/API/SearchMovie/${apiKey}/${movieName}`);
+    const imdbData = await imdbRes.json();
+    const imdbId = imdbData.results[0].id;
+    const movieOSRes = await fetch(`https://imdb-api.com/en/API/ExternalSites/${apiKey}/${imdbId}`);
+    const movieOSData = await movieOSRes.json()
+    const movieOfficialSite = movieOSData.officialWebsite;
+    // IMDB Embedded property is linkEmbed 
+    const imdbTrailRes = await fetch(`https://imdb-api.com/en/API/Trailer/${apiKey}/${imdbId}`);
+    const imdbTrail = await imdbTrailRes.json();
+    // // Youtube Trailer property is videoId
+    // // const movieTrailRes = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/${apiKey}/${imdbId}`);
+    // // const movieTrail = await movieTrailRes.json();
+    const simMovieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${TMDBKey}`);
+    const simMovieData = await simMovieRes.json();
+    const searchResults = document.querySelector('.search-results');
+    const searchBar = document.querySelector('input');
+
+
+    searchBar.value = "";
+    searchResults.style.visibility = 'hidden';
+
+
+
+
+
+    await gatherInfo(movieData, simMovieData, movieOfficialSite, imdbTrail);
+    let movieDetails = document.querySelector('.movie-details');
+    let clsBtn = document.querySelector('.close-btn');
+
+    clsBtn.addEventListener('click', closeMovieInfo);
+
+    movieDetails.style.backgroundImage = `url(https://image.tmdb.org/t/p/w500${movieData.backdrop_path})`;
+    movieDetails.style.backgroundRepeat = 'no-repeat';
+    movieDetails.style.backgroundSize = 'cover';
+
+
+
+    movieList.style.display = 'none';
+    movieList.style.opacity = '0';
+    movieOverlay.style.display = 'flex';
+    movieOverlay.classList.add('open');
+    window.scrollTo(0, 0);
 }
 
 

@@ -34,6 +34,18 @@
             <input type="text" name="search" placeholder="Search" class="search-bar" autofocus />
             <i class="fa-solid fa-magnifying-glass"></i>
         </form>
+        <div class="search-input-container">
+            <section class="search-results">
+                <div class="search-card">
+                    <div class="search-item-img-container" data-id="">
+                        <img src="" class="search-item-img" alt="">
+                    </div>
+                    <h4 class="search-item-name">N/A</h4>
+                    <h4 class="search-realease-year">(2022)</h4>
+                </div>
+            </section>
+        </div>
+
         <div class="hamburger-menu">
             <i class="fa-solid fa-bars"></i>
         </div>
@@ -87,7 +99,7 @@
             </div>
         </section>
 
-        <%- include("partials/movieoverlay") %>
+        <%- include("partials/movieoverlay.ejs") %>
 
     </main>
     <%- include("partials/footer.ejs") %>
