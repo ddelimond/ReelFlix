@@ -52,6 +52,8 @@ async function fetchSearchedMovies() {
         searchResults.classList.remove('show')
     }
 
+    console.log('hi')
+
     const req = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDBKey}&query=${searchBar.value}`);
     const res = await req.json();
     const arr = res.results;
@@ -243,7 +245,7 @@ async function openSearch(e) {
 
 
     searchBar.value = "";
-    searchResults.style.visibility = 'hidden';
+    if (searchResults.classList.contains('show')) { searchResults.classList.remove('show') };
 
 
 
