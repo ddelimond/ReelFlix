@@ -310,6 +310,7 @@ h1 {
     justify-content: center;
     column-gap: 30px;
     row-gap: 130px;
+    min-height: 450px;
 }
 
 .movie-card-filter {
@@ -518,6 +519,7 @@ h1 {
     padding: 20px;
     margin-top: 10px;
     position: relative;
+    overflow-y: scroll;
 
 }
 
