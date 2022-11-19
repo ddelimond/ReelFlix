@@ -65,8 +65,8 @@
     const movieOverlay = document.querySelector('.movie-overlay');
     const clsBtn = document.querySelector('.close-btn');
     const movieList = document.querySelector('.movie-section-container');
-    const TMDBKey = '0f33b6ea8c8d4e4629dab26d5b2c6c6f';
-    const apiKey = 'k_cmwzlhxy';
+    const tmdb = '0f33b6ea8c8d4e4629dab26d5b2c6c6f';
+    const imdb = 'k_cmwzlhxy';
     let rMovies = document.querySelectorAll('.movie-rec-poster');
 
 
@@ -151,18 +151,18 @@
         const id = e.attributes[2].nodeValue;
         const name = e.attributes[3].nodeValue;
 
-        const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMDBKey}`);
+        const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${tmdb}`);
         const movieData = await movieRes.json();
-        const imdbRes = await fetch(`https://imdb-api.com/en/API/SearchMovie/${apiKey}/${name}`);
+        const imdbRes = await fetch(`https://imdb-api.com/en/API/SearchMovie/${imdb}/${name}`);
         const imdbData = await imdbRes.json();
         const imdbId = imdbData.results[0].id;
-        const imdbTrailRes = await fetch(`https://imdb-api.com/en/API/Trailer/${apiKey}/${imdbId}`);
+        const imdbTrailRes = await fetch(`https://imdb-api.com/en/API/Trailer/${imdb}/${imdbId}`);
         const imdbTrail = await imdbTrailRes.json();
-        const movieOfficialSiteRes = await fetch(`https://imdb-api.com/en/API/ExternalSites/${apiKey}/${imdbId}`);
+        const movieOfficialSiteRes = await fetch(`https://imdb-api.com/en/API/ExternalSites/${imdb}/${imdbId}`);
         const movieOfficialSiteData = await movieOfficialSiteRes.json();
         const movieOfficialSite = movieOfficialSiteData.officialWebsite;
 
-        const simMovieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${TMDBKey}`);
+        const simMovieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${tmdb}`);
         const simMovieData = await simMovieRes.json();
 
         // uses the variables and creates the slected recommended movie's details container

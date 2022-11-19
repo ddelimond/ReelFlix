@@ -50,7 +50,7 @@ async function fetchSearchedMovies() {
     }
 
     // Variables
-    const req = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDBKey}&query=${searchBar.value}`);
+    const req = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${tmdb}&query=${searchBar.value}`);
     const res = await req.json();
     const arr = res.results;
 
@@ -89,7 +89,7 @@ async function getGenreMovies(e) {
     // Variables
     let genre = e.currentTarget.innerHTML;
     let genreID = e.currentTarget.attributes[2].nodeValue;
-    let genreMoviesRes = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDBKey}&language=en-US&sort_by=popularity.desc&with_genres=${genreID}`)
+    let genreMoviesRes = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${tmdb}&language=en-US&sort_by=popularity.desc&with_genres=${genreID}`)
     let genreMoviesData = await genreMoviesRes.json();
     let genreMovies = await genreMoviesData.results;
     let genreNameDom = document.querySelector('.category-name');
@@ -173,7 +173,7 @@ async function getGenres() {
 
     // Variables
 
-    const genresRes = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${TMDBKey}`);
+    const genresRes = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${tmdb}`);
     const genreData = await genresRes.json();
     const fetchedGenres = genreData.genres;
 
@@ -257,18 +257,18 @@ async function openSearch(e) {
     const id = e.currentTarget.firstElementChild.attributes[1].nodeValue;
     const movieName = e.currentTarget.querySelector('.search-item-name').textContent;
 
-    const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMDBKey}`);
+    const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${tmdb}`);
     const movieData = await movieRes.json();
-    const imdbRes = await fetch(`https://imdb-api.com/en/API/SearchMovie/${apiKey}/${movieName}`);
+    const imdbRes = await fetch(`https://imdb-api.com/en/API/SearchMovie/${imbd}/${movieName}`);
     const imdbData = await imdbRes.json();
     const imdbId = imdbData.results[0].id;
-    const movieOSRes = await fetch(`https://imdb-api.com/en/API/ExternalSites/${apiKey}/${imdbId}`);
+    const movieOSRes = await fetch(`https://imdb-api.com/en/API/ExternalSites/${imbd}/${imdbId}`);
     const movieOSData = await movieOSRes.json()
     const movieOfficialSite = movieOSData.officialWebsite;
     // IMDB Embedded property is linkEmbed 
-    const imdbTrailRes = await fetch(`https://imdb-api.com/en/API/Trailer/${apiKey}/${imdbId}`);
+    const imdbTrailRes = await fetch(`https://imdb-api.com/en/API/Trailer/${imbd}/${imdbId}`);
     const imdbTrail = await imdbTrailRes.json();
-    const simMovieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${TMDBKey}`);
+    const simMovieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${tmdb}`);
     const simMovieData = await simMovieRes.json();
     const searchResults = document.querySelector('.search-results');
     const searchBar = document.querySelector('input');
@@ -310,18 +310,18 @@ async function openMovieInfo(e) {
     const movieName = e.currentTarget.querySelector('.movie-card').querySelector('.movie-info').querySelector('.movie-name').textContent;
 
 
-    const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMDBKey}`);
+    const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${tmdb}`);
     const movieData = await movieRes.json();
-    const imdbRes = await fetch(`https://imdb-api.com/en/API/SearchMovie/${apiKey}/${movieName}`);
+    const imdbRes = await fetch(`https://imdb-api.com/en/API/SearchMovie/${imbd}/${movieName}`);
     const imdbData = await imdbRes.json();
     const imdbId = imdbData.results[0].id;
-    const movieOSRes = await fetch(`https://imdb-api.com/en/API/ExternalSites/${apiKey}/${imdbId}`);
+    const movieOSRes = await fetch(`https://imdb-api.com/en/API/ExternalSites/${imbd}/${imdbId}`);
     const movieOSData = await movieOSRes.json()
     const movieOfficialSite = movieOSData.officialWebsite;
     // IMDB Embedded property is linkEmbed 
-    const imdbTrailRes = await fetch(`https://imdb-api.com/en/API/Trailer/${apiKey}/${imdbId}`);
+    const imdbTrailRes = await fetch(`https://imdb-api.com/en/API/Trailer/${imbd}/${imdbId}`);
     const imdbTrail = await imdbTrailRes.json();
-    const simMovieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${TMDBKey}`);
+    const simMovieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${tmdb}`);
     const simMovieData = await simMovieRes.json();
 
 
