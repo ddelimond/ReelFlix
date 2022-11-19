@@ -49,7 +49,5 @@ app.get('/query', async (req, res) => {
     }
 })
 
-app.listen(port, () => {
-    console.log('Server is running go catch it ...')
-})
+app.listen(PORT, '0.0.0.0')
 
