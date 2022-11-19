@@ -309,7 +309,7 @@ h1 {
     padding: 35px;
     justify-content: center;
     column-gap: 30px;
-    row-gap: 130px;
+    row-gap: 100px;
     min-height: 450px;
 }
 
