@@ -24,11 +24,11 @@ app.use(bodyParser.json())
 
 
 // connect to Database
-// mongoose.connect(
-//     process.env.connectionStr,
-//     { useNewUrlParser: true },
-//     console.log('Connected to your Db!')
-// );
+mongoose.connect(
+    process.env.connectionStr,
+    { useNewUrlParser: true },
+    console.log('Connected to your Db!')
+);
 
 app.get('/', async (req, res) => {
     const popUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDBKey}`
