@@ -77,6 +77,7 @@
     // Functions
 
     function closeMovieInfo() {
+        document.querySelector('#video').src = '#';
         movieOverlay.classList.add('close');
         movieOverlay.classList.remove('open');
         movieOverlay.style.display = 'none';
@@ -87,6 +88,8 @@
 
 
     function gatherInfo(data, rec, site, trailer) {
+        let genre;
+        if (data.genres.length === 0) { genre = 'N/A' } else { genre = data.genres[0].name }
         return movieOverlay.innerHTML = `<div class="movie-details-container">
     <div class="details-btns">
         <a href="${site}" target="_blank" class="official-page">OFFICIAL PAGE</a>
@@ -105,7 +108,7 @@
                 <span>rating: ${data.vote_average} <i class="fa-solid fa-star"></i></span>
                 <span class="movie-info-votes">all votes: ${data.vote_count}</span>
             </div>
-            <div class="movie-info-genre">${data.genres[0].name}</div>
+            <div class="movie-info-genre">${genre}</div>
             <div class="movie-info-plot">
                 <h4>${data.overview}</h4>
             </div>

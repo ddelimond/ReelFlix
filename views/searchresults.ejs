@@ -1,0 +1,111 @@
+< !DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="/Imgs/REElFlix/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/Imgs/REElFlix/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/Imgs/REElFlix/favicon-16x16.png">
+        <link rel="manifest" href="/Imgs/REElFlix/site.webmanifest">
+        <link rel="mask-icon" href="/Imgs/REElFlix/safari-pinned-tab.svg" color="#000000">
+        <link rel="shortcut icon" href="/Imgs/REElFlix/favicon.ico">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-config" content="/Imgs/REElFlix/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+        <script src="https://kit.fontawesome.com/3d26510c42.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/Css/style.css">
+        <title>ReelFlix</title>
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <header class="header-container">
+            <div class="logo">
+                <img src="/Imgs/Logo-light.png" alt="Company Logo">
+            </div>
+            <form action="/query" method="get" class="search form">
+                <input type="search" name="search" placeholder="Search" class="search-bar" autofocus />
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </form>
+            <div class="search-input-container">
+                <section class="search-results">
+                    <div class="search-card">
+                        <div class="search-item-img-container" data-id="">
+                            <img src="" class="search-item-img" alt="">
+                        </div>
+                        <h4 class="search-item-name">N/A</h4>
+                        <h4 class="search-realease-year">(2022)</h4>
+                    </div>
+                </section>
+            </div>
+
+            <div class="hamburger-menu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </header>
+
+        <!-- Content Section -->
+
+        <main>
+            <!-- Category Buttons -->
+            <div class="category-container">
+                <h1 class="category-header-title">Category</h1>
+                <div class="btn-container">
+                    <button class="btn" data-category="Adventure">Adventure</button>
+                    <button class="btn" data-category="Adventrue">Adventure</button>
+                </div>
+            </div>
+            <!-- Movie Section -->
+            <section class="movie-section-container">
+                <div class="category-banner">
+                    <h1 class="category-name">SEARCH</h1>
+                </div>
+                <div class="movies-container">
+                    <% movieData.results.forEach(movie=> {%>
+                        <div class="movie-card-filter">
+                            <div class="movie-card" data-id="<%=movie.id%>">
+                                <span class="rating">
+                                    <%=movie.vote_average%><i class="fa-solid fa-star"></i>
+                                </span>
+                                <div class="poster-container">
+                                    <img src='https://image.tmdb.org/t/p/w500/<%=movie.poster_path%>'
+                                        alt=<%=movie.title%>>
+                                </div>
+                                <div class="movie-info">
+                                    <h5 class="movie-name">
+                                        <%=movie.title%>
+                                    </h5>
+                                    <div class="details">
+                                        <div class="year-date">
+                                            <span><span class="year">
+                                                    <%=movie.release_date.split('-')[0]%>
+                                                </span>.<span class="runtime">60mins +</span></span>
+                                        </div>
+                                        <div class="platform">
+                                            <span>Movie</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <%})%>
+                </div>
+            </section>
+
+            <%- include("partials/movieoverlay.ejs") %>
+
+        </main>
+        <%- include("partials/footer.ejs") %>
+
+            <script type="module" src="/Js/app.js"></script>
+    </body>
+
+    </html>

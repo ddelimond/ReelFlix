@@ -1,8 +1,9 @@
-import { apiKey } from "./apiKey.js";
-import { TMDBKey } from "./apiKey.js";
+
 
 
 // Variables
+const apiKey = 'k_cmwzlhxy'
+const TMDBKey = '0f33b6ea8c8d4e4629dab26d5b2c6c6f'
 const hamburgerMenu = document.querySelector('.hamburger-menu');
 const categoryBtnsContainer = document.querySelector('.category-container');
 const movies = document.querySelectorAll('.movie-card-filter');
@@ -141,6 +142,7 @@ async function getGenreMovies(e) {
 
 
 function closeMovieInfo() {
+    document.querySelector('#video').src = '#';
     movieOverlay.classList.add('close');
     movieOverlay.classList.remove('open');
     movieOverlay.style.display = 'none';
@@ -173,6 +175,8 @@ async function getGenres() {
 
 
 async function gatherInfo(data, rec, site, trailer) {
+    let genre;
+    if (data.genres.length === 0) { genre = 'N/A' } else { genre = data.genres[0].name }
     return movieOverlay.innerHTML = `<div class="movie-details-container">
 <div class="details-btns">
     <a href="${site}" target="_blank" class="official-page">OFFICIAL PAGE</a>
@@ -191,7 +195,7 @@ async function gatherInfo(data, rec, site, trailer) {
             <span>rating: ${data.vote_average} <i class="fa-solid fa-star"></i></span>
             <span class="movie-info-votes">all votes: ${data.vote_count}</span>
         </div>
-        <div class="movie-info-genre">${data.genres[0].name}</div>
+        <div class="movie-info-genre">${genre}</div>
         <div class="movie-info-plot">
             <h4>${data.overview}</h4>
         </div>
@@ -220,7 +224,6 @@ async function gatherInfo(data, rec, site, trailer) {
 }
 
 async function openSearch(e) {
-    console.log(e.currentTarget)
 
     const id = e.currentTarget.firstElementChild.attributes[1].nodeValue;
     const movieName = e.currentTarget.querySelector('.search-item-name').textContent;

@@ -9,6 +9,10 @@ const path = require('path');
 const { basename } = require('path');
 require('dotenv').config();
 const app = express();
+let bodyParser = require('body-parser');
+const TMDBKey = process.env.TMDBKey;
+const { query } = require('express');
+
 
 
 
@@ -18,6 +22,10 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.get(express.urlencoded({ extended: true }));
+app.get(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+
+
 
 
 // connect to Database
@@ -33,8 +41,18 @@ app.get('/', async (req, res) => {
     let popData = await popRes.json();
     let date = new Date().getFullYear()
     res.render('index.ejs', { movieData: popData, date: date });
+})
 
-    console.log(popData.results);
+app.get('/query', async (req, res) => {
+    console.log(path.basename(req.url).split('').slice(13).join('')
+    )
+    let query = await path.basename(req.url).split('').slice(13).join('');
+    let searchResultRes = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDBKey}&query=${query}`)
+    let searchResults = await searchResultRes.json();
+    let date = new Date().getFullYear()
+    res.render('searchresults.ejs', { movieData: searchResults, date: date })
+
+
 })
 
 app.listen(port, () => {
