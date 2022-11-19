@@ -53,6 +53,8 @@ async function fetchSearchedMovies() {
     const req = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${tmdb}&query=${searchBar.value}`);
     const res = await req.json();
     const arr = res.results;
+    console.log(res)
+    console.log(arr)
 
     // if the api finds movies that match the typed value,
     //  a movie card will appear for each found movie that contains the movie poster, release date, and title.
