@@ -7,29 +7,25 @@ const http = require('http');
 const url = require('url');
 const path = require('path');
 const { basename } = require('path');
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config()
 const app = express();
 let bodyParser = require('body-parser');
-const TMDBKey = process.env.TMDBKey;
-const { query } = require('express');
-const { render } = require('ejs');
+
 
 
 // middleware
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.get(express.urlencoded({ extended: true }));
-app.get(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
+
 
 
 // connect to Database
-mongoose.connect(
-    process.env.connectionStr,
-    { useNewUrlParser: true },
-    console.log('Connected to your Db!')
-);
+// mongoose.connect(
+//     process.env.connectionStr,
+//     { useNewUrlParser: true },
+//     console.log('Connected to your Db!')
+// );
 
 app.get('/', async (req, res) => {
     const popUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDBKey}`
