@@ -86,7 +86,7 @@
                                 <div class="details">
                                     <div class="year-date">
                                         <span><span class="year">
-                                                <%=movie.release_date.split('-')[0] %>
+                                                <%=movie.release_date?movie.release_date.split('-')[0]:'N /A'%>
                                             </span><span class="runtime">60mins +</span></span>
                                     </div>
                                     <div class="platform">
