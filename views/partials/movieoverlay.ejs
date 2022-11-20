@@ -167,6 +167,7 @@
 
         // uses the variables and creates the slected recommended movie's details container
         await gatherInfo(movieData, simMovieData, movieOfficialSite, imdbTrail);
+        document.querySelector('.search-input-container').style.visibility = 'hidden';
 
         let movieDetails = document.querySelector('.movie-details');
         let clsBtn = document.querySelector('.close-btn');

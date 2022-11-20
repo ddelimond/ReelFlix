@@ -335,6 +335,7 @@ async function openMovieInfo(e) {
 
     // gathers information from the variables to create the clicked films movie details container
     await gatherInfo(movieData, simMovieData, movieOfficialSite, imdbTrail);
+    document.querySelector('.search-input-container').style.visibility = 'hidden';
 
     let movieDetails = document.querySelector('.movie-details');
     let clsBtn = document.querySelector('.close-btn');
