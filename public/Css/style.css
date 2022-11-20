@@ -314,7 +314,7 @@ h1 {
     justify-content: center;
     column-gap: 30px;
     row-gap: 100px;
-    min-height: 450px;
+    min-height: 600px;
 }
 
 .movie-card-filter {
