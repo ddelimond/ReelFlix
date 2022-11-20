@@ -42,6 +42,9 @@ searchBar.addEventListener('keyup', fetchSearchedMovies)
 
 // Handles functionality when searching for movies using the search field
 async function fetchSearchedMovies() {
+    if (document.querySelector('.search-input-container').style.visibility === 'hidden') {
+        document.querySelector('.search-input-container').style.visibility = 'initial'
+    }
 
     // if the typed value is less than 3 chars long the search results will not show,
     //  however if typed value is 3 or more chars, the movies titles that match the typed value are shown to the user.
@@ -167,7 +170,8 @@ function closeMovieInfo() {
 // function on opening hamburger menu containing movie genres, 
 // adds open class to the movie genre container
 function openMenu() {
-    categoryBtnsContainer.classList.toggle('open')
+    document.querySelector('.search-input-container').style.visibility = 'hidden';
+    categoryBtnsContainer.classList.toggle('open');
 };
 
 // Handles getting the different genre of movies and creating a btn for the each genre 
