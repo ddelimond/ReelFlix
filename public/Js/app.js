@@ -94,9 +94,12 @@ async function getGenreMovies(e) {
     let genreMovies = await genreMoviesData.results;
     let genreNameDom = document.querySelector('.category-name');
 
+
     // The genre banner name is changed to the specified genre 
     // that the user has selected, the name is in caps
     genreNameDom.innerHTML = await genre.toUpperCase();
+    // Goes to the top of the page
+    window.scrollTo(0, 0)
 
     // The most popular movies from the selected genre are returned and placed in the movie container,
     //  each returned movie will be placed in a card that contains the movies id, poster, avr score, name, year of release.
