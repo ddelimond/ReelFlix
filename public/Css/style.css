@@ -391,6 +391,7 @@ h1 {
 
 .poster-container img {
     height: 250px;
+    min-height: 250px;
 
 }
 
