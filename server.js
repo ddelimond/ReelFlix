@@ -46,6 +46,7 @@ app.get('/query', async (req, res) => {
         let searchResultRes = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDBKey}&query=${query}`)
         let searchResults = await searchResultRes.json();
         let date = new Date().getFullYear()
+        console.log(searchResults)
         res.render('searchresults.ejs', { movieData: searchResults, date: date })
     }
 })
