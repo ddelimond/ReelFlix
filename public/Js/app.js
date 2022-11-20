@@ -50,6 +50,7 @@ async function fetchSearchedMovies() {
     //  however if typed value is 3 or more chars, the movies titles that match the typed value are shown to the user.
     if (searchBar.value.length >= 3) { searchResults.classList.add('show') } else {
         searchResults.classList.remove('show')
+        document.querySelector('.search-input-container').style.visibility = 'hidden';
     }
 
     // Variables
@@ -335,7 +336,7 @@ async function openMovieInfo(e) {
 
     // gathers information from the variables to create the clicked films movie details container
     await gatherInfo(movieData, simMovieData, movieOfficialSite, imdbTrail);
-    document.querySelector('.search-input-container').style.visibility = 'hidden';
+
 
     let movieDetails = document.querySelector('.movie-details');
     let clsBtn = document.querySelector('.close-btn');

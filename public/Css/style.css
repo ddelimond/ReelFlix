@@ -733,6 +733,10 @@ footer {
         margin-left: initial;
     }
 
+    .search-input-container {
+        visibility: hidden;
+    }
+
     /* .close-btn {
         right: 110px;
     } */
