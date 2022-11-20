@@ -1,21 +1,22 @@
+
 const mongoose = require('mongoose');
 const express = require('express');
 const movieUser = require('./models/movieusers');
 const port = process.env.port || 8000
-const fs = require('fs');
-const http = require('http');
-const url = require('url');
+const cors = require('cors');
 const path = require('path');
 const { basename } = require('path');
 require('dotenv').config()
+const fetch = require('node-fetch');
 const app = express();
-let bodyParser = require('body-parser');
+
 
 
 
 // middleware
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(cors());
 app.get(express.urlencoded({ extended: true }));
 
 
