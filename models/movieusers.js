@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+
+// Default Schema for what a user is required to have
 const movieUsers = mongoose.Schema({
     username: {
         type: String,
